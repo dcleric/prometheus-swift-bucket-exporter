@@ -23,7 +23,7 @@ build:
   only:
     - master
   tags:
-    - docker
+    - docker-engine
 
 deploy:
   image: docker-hub.2gis.ru/2gis-io/k8s-handle:latest

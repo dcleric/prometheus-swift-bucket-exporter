@@ -37,18 +37,18 @@ conn = swiftclient.Connection(
 
 def get_swift_container_size():
     result_dict = conn.head_container(container=swift_container)
-    return result_dict.get('x-container-bytes-used');
+    return result_dict.get('x-container-bytes-used')
 
 
 def get_swift_container_object_count():
     result_dict = conn.head_container(container=swift_container)
-    return result_dict.get('x-container-object-count');
+    return result_dict.get('x-container-object-count')
 
-swift_container_size = prometheus_client.Gauge('swift_container_size_bytes', \
+swift_container_size = prometheus_client.Gauge('swift_container_size_bytes',
                                                'bytes')
 
 
-swift_container_count = prometheus_client.Gauge('swift_container_file_count',\
+swift_container_count = prometheus_client.Gauge('swift_container_file_count',
                                                 'files')
 
 

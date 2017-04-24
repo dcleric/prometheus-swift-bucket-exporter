@@ -19,7 +19,7 @@ spec:
         role: worker
       containers:
       - name: prometheus-swift-bucket-exporter
-        image: docker-hub.2gis.ru/2gis-io/prometheus-swift-bucket-exporter
+        image: docker-hub.2gis.ru/2gis-io/prometheus-swift-bucket-exporter:{{ image_version }}
         readinessProbe:
           httpGet:
             path: /

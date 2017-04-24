@@ -11,11 +11,6 @@ swift_password = base64.b64decode(os.environ.get('ENV_SWIFT_PASSWORD'))
 swift_user = os.environ.get('ENV_SWIFT_USER')
 swift_url = os.environ.get('ENV_SWIFT_URL')
 swift_container = os.environ.get('ENV_SWIFT_CONTAINER')
-#swift_password = base64.b64decode('RDk0ZmNZQk5ic1Q4MEM1UGVwb09Sbk5DYUF3U3FzZllkN2lnU0RHTQo=')
-#swift_password = base64.b64decode('RDk0ZmNZQk5ic1Q4MEM1UGVwb09Sbk5DYUF3U3FzZllkN2lnU0RHTQ==')
-#swift_user = 'io_registry:swift'
-#swift_url = 'http://rgw.n3.hw:80/auth/v1.0'
-#swift_container = 'Registry'
 
 if os.environ.get('FORMATTER', 'json') == 'json':
     default_format = '%(message)s,' \
@@ -33,9 +28,6 @@ if os.environ.get('FORMATTER', 'json') == 'json':
     root_log.addHandler(handler)
 log = logging.getLogger(__name__)
 
-# Metrics
-#SWIFT_CONTAINER_SIZE = Gauge('swift_container_size_bytes', bytes, )
-#SWIFT_CONTAINER_FILECOUNT = Gauge('swift_container_file_count', files, )
 conn = swiftclient.Connection(
     user=swift_user,
     key=swift_password,
@@ -56,13 +48,8 @@ def main():
     prometheus_client.start_http_server(80)
     while True:
        swift_container_size.set(get_swift_container_size())
-       print swift_container_size
        swift_container_count.set(get_swift_container_object_count())
-       print swift_container_count
-       print swift_password
-    #   get_swift_container_object_count();
-    #   get_swift_container_size();
-       time.sleep(2)
+       time.sleep(10)
 
 if __name__ == '__main__':
     main()

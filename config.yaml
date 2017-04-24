@@ -7,6 +7,7 @@ common:
   k8s_ca_base64: "{{ env='K8S_CA_BASE64' }}"
   k8s_namespace: io
   image_version: "{{ env='IMAGE_VERSION' }}"
+  swift_password_env: "{{ env='SWIFT_PASSWORD_B64' }}"
 
 prometheus-swift-bucket-exporter:
   kubectl:

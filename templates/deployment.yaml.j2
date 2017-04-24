@@ -42,3 +42,15 @@ spec:
           requests:
             cpu: 100m
             memory: 128Mi
+        env:
+        - name: ENV_SWIFT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+            name: prometheus-swift-bucket-exporter 
+            key: swift_password
+        - name: ENV_SWIFT_USER
+          value: "io_registry:swift"
+        - name: ENV_SWIFT_URL
+          value: "http://rgw.n3.hw:80/auth/v1.0"
+        - name: ENV_SWIFT_CONTAINER
+          value: "Registry"

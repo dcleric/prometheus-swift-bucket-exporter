@@ -33,23 +33,32 @@ conn = swiftclient.Connection(
     key=swift_password,
     authurl=swift_url,
 )
+
+
 def get_swift_container_size():
     result_dict = conn.head_container(container=swift_container)
     return result_dict.get('x-container-bytes-used');
+
 
 def get_swift_container_object_count():
     result_dict = conn.head_container(container=swift_container)
     return result_dict.get('x-container-object-count');
 
-swift_container_size = prometheus_client.Gauge('swift_container_size_bytes', 'bytes')
-swift_container_count = prometheus_client.Gauge('swift_container_file_count', 'files')
+swift_container_size = prometheus_client.Gauge('swift_container_size_bytes', \
+                                               'bytes')
+
+
+swift_container_count = prometheus_client.Gauge('swift_container_file_count',\
+                                                'files')
+
 
 def main():
     prometheus_client.start_http_server(80)
     while True:
-       swift_container_size.set(get_swift_container_size())
-       swift_container_count.set(get_swift_container_object_count())
-       time.sleep(10)
+        swift_container_size.set(get_swift_container_size())
+        swift_container_count.set(get_swift_container_object_count())
+        time.sleep(10)
+
 
 if __name__ == '__main__':
     main()

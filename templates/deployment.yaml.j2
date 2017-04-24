@@ -20,18 +20,6 @@ spec:
       containers:
       - name: prometheus-swift-bucket-exporter
         image: docker-hub.2gis.ru/2gis-io/prometheus-swift-bucket-exporter:{{ image_version }}
-        readinessProbe:
-          httpGet:
-            path: /
-            port: 80
-          initialDelaySeconds: 10
-          timeoutSeconds: 10
-        livenessProbe:
-          httpGet:
-            path: /
-            port: 80
-          initialDelaySeconds: 10
-          timeoutSeconds: 10
         ports:
         - containerPort: 80
           protocol: TCP

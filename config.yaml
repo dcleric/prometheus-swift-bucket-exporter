@@ -1,0 +1,12 @@
+---
+
+common:
+  #k8s
+  k8s_master_uri: https://master.web-staging.os-n3.hw:6443
+  k8s_token: "{{ env='K8S_TOKEN' }}"
+  k8s_ca_base64: "{{ env='K8S_CA_BASE64' }}"
+  k8s_namespace: io
+
+prometheus-swift-bucket-exporter:
+  kubectl:
+  - template: deployment.yaml.j2

@@ -1,0 +1,39 @@
+---
+
+stages:
+  - test
+  - build
+  - deploy
+test:
+  stage: test
+  script:
+    - tox
+  tags:
+    - docker-engine
+    - python2
+    - tox
+
+build:
+  stage: build
+  script:
+    - export IMAGE_VERSION=git-$(echo $CI_BUILD_REF | cut -c1-8)
+    - make build
+    - make push
+    - make clean
+  only:
+    - master
+  tags:
+    - docker
+
+deploy:
+  image: docker-hub.2gis.ru/2gis-io/k8s-handle:latest
+  stage: deploy
+  script:
+    - export IMAGE_VERSION=git-$(echo $CI_BUILD_REF | cut -c1-8)
+    - k8s-handle deploy --section prometheus-swift-bucket-exporter
+  only:
+    - master
+  tags:
+    - 2gis
+    - docker
+  when: manual

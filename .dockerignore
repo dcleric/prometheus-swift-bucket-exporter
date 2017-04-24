@@ -1,0 +1,9 @@
+.dockerignore
+Dockerfile*
+test-requirements.txt
+.env*
+.git/
+.gitignore
+Procfile*
+.tox/
+tox.ini

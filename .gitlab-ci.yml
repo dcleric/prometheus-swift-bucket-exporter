@@ -4,6 +4,7 @@ stages:
   - test
   - build
   - deploy
+  - test-deploy
 test:
   stage: test
   script:
@@ -31,6 +32,19 @@ deploy:
   script:
     - export IMAGE_VERSION=git-$(echo $CI_BUILD_REF | cut -c1-8)
     - k8s-handle deploy --section prometheus-swift-bucket-exporter
+  only:
+    - master
+  tags:
+    - 2gis
+    - docker
+  when: manual
+
+test-deploy:
+  image: docker-hub.2gis.ru/2gis-io/k8s-handle:latest
+  stage: deploy
+  script:
+    - export IMAGE_VERSION=git-$(echo $CI_BUILD_REF | cut -c1-8)
+    - k8s-handle deploy --section testing-prometheus-swift-bucket-exporter
   only:
     - master
   tags:

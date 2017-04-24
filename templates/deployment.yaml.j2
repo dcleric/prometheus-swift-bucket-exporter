@@ -46,8 +46,8 @@ spec:
         - name: ENV_SWIFT_PASSWORD
           valueFrom:
             secretKeyRef:
-            name: prometheus-swift-bucket-exporter 
-            key: swift_password
+              name: prometheus-swift-bucket-exporter-secret 
+              key: swift_password
         - name: ENV_SWIFT_USER
           value: "io_registry:swift"
         - name: ENV_SWIFT_URL

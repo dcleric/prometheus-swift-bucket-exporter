@@ -44,6 +44,7 @@ def get_swift_container_object_count():
     result_dict = conn.head_container(container=swift_container)
     return result_dict.get('x-container-object-count')
 
+
 swift_container_size = prometheus_client.Gauge('swift_container_size_bytes',
                                                'bytes')
 

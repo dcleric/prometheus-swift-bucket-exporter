@@ -1,0 +1,1 @@
+A little project to expose swift containers size and object count to Prometheus

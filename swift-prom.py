@@ -45,12 +45,13 @@ def get_swift_container_object_count():
     return result_dict.get('x-container-object-count')
 
 
-swift_container_size = prometheus_client.Gauge('swift_container_size_bytes',
-                                               'bytes', ['container'])
+swift_container_size = prometheus_client.Gauge(
+                 'swift_container_size_bytes', 'bytes', ['container'])
 
 
-swift_container_count = prometheus_client.Gauge('swift_container_file_count',
-                                                'files', ['container'])
+swift_container_count = prometheus_client.Gauge(
+                 'swift_container_file_count', 'files', ['container'])
+
 
 def main():
     prometheus_client.start_http_server(80)

@@ -56,8 +56,10 @@ swift_container_count = prometheus_client.Gauge(
 def main():
     prometheus_client.start_http_server(80)
     while True:
-        swift_container_size.labels(container=swift_container).set(get_swift_container_size())
-        swift_container_count.labels(container=swift_container).set(get_swift_container_object_count())
+        swift_container_size.labels(container=swift_container).set(
+            get_swift_container_size())
+        swift_container_count.labels(container=swift_container).set(
+            get_swift_container_object_count())
         time.sleep(10)
 
 

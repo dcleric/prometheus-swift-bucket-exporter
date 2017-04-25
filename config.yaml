@@ -22,4 +22,4 @@ testing-prometheus-swift-bucket-exporter:
   kubectl:
   - template: deployment.yaml.j2
   - template: secret.yaml.j2
-  - template: service.yaml
+  - template: service.yaml.j2
